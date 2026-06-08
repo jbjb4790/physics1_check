@@ -1,7 +1,7 @@
 // Google Apps Script Web App URL을 여기에 붙여 넣으세요.
 // 예: https://script.google.com/macros/s/AKfycbxxxxxxxxxxxxxxxxxxxxxxxxxxxx/exec
 window.PHYSICS_CHECK_CONFIG = {
-  SUBMIT_URL: "",
+  SUBMIT_URL: "https://script.google.com/macros/s/AKfycby93qVjjTHZNTN7Fzb1qp4u0hayfDQ_FBiEYqHrEwAnU2uynOMD2J00A7Q7p-4RbHsWtw/exec",
   GOOGLE_APPS_SCRIPT_URL: "", // 이전 버전 호환용. 비워 두어도 됩니다.
   CLASS_NAME: "물리Ⅰ",
   CLASS_LABEL: "물리Ⅰ",      // 이전 버전 호환용. 비워 두어도 됩니다.
