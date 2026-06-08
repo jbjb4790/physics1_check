@@ -1724,3 +1724,66 @@ pre {
     height: 68px;
   }
 }
+
+/* === Fix: prevent main headline from being hidden behind the hero image === */
+@media (min-width: 1041px) {
+  .home-page .hero-card-visual {
+    grid-template-columns: minmax(0, 1.22fr) minmax(320px, .78fr);
+    gap: clamp(20px, 2.8vw, 34px);
+    padding: clamp(30px, 4.2vw, 52px);
+  }
+
+  .home-page .hero-copy-left {
+    position: relative;
+    z-index: 3;
+    max-width: 720px;
+    min-width: 0;
+  }
+
+  .home-page .hero-media {
+    z-index: 1;
+    min-width: 0;
+  }
+
+  .home-page .hero-headline {
+    max-width: 720px;
+    font-size: clamp(2.65rem, 4.15vw, 3.95rem);
+    line-height: 1.08;
+    letter-spacing: -.074em;
+    overflow: visible;
+  }
+
+  .home-page .hero-headline .headline-line {
+    width: max-content;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: visible;
+  }
+
+  .home-page .hero-image-shell {
+    width: min(100%, 540px);
+  }
+}
+
+@media (min-width: 1041px) and (max-width: 1240px) {
+  .home-page .hero-card-visual {
+    grid-template-columns: minmax(0, 1.28fr) minmax(300px, .72fr);
+    gap: 24px;
+  }
+
+  .home-page .hero-headline {
+    font-size: clamp(2.45rem, 4.35vw, 3.55rem);
+    letter-spacing: -.071em;
+  }
+}
+
+@media (min-width: 1041px) and (max-width: 1120px) {
+  .home-page .hero-card-visual {
+    grid-template-columns: minmax(0, 1.34fr) minmax(280px, .66fr);
+    padding: 30px;
+  }
+
+  .home-page .hero-headline {
+    font-size: clamp(2.35rem, 4.55vw, 3.25rem);
+  }
+}
