@@ -1,29 +1,28 @@
-# 물리Ⅰ 회차별 개념·공식·오개념 체크 사이트
+# 물리Ⅰ Check · GitHub Pages + Google Sheets 연동형
 
-이 폴더는 GitHub Pages에 바로 올릴 수 있는 무료 정적 HTML 사이트입니다.
+첨부 교재의 1~17회차 진도 흐름에 맞춘 수업 후 5분 자기점검 사이트입니다. 학생은 회차별 링크에서 문제를 풀고, 채점 직후 약한 개념 코멘트와 복습 액션을 확인한 뒤 결과를 Google Sheet와 선택적으로 Google Drive 리포트 파일로 제출할 수 있습니다.
 
-## 포함 파일
+## 파일 구성
 
-- `index.html`: 전체 회차 목록
-- `lesson.html`: 학생이 푸는 회차별 진단 페이지
-- `teacher.html`: GitHub Pages 업로드 안내 및 회차 링크 복사 화면
-- `data.js`: 17회차 수업 데이터, 공식 카드, 오개념 O/X, 진단 문항
-- `app.js`: 채점, 피드백, 리포트 생성 기능
-- `styles.css`: 디자인
+- `index.html` : 학생용 첫 화면 / 회차 선택
+- `lesson.html` : 회차별 진단 화면
+- `teacher.html` : Google 저장 설정 안내
+- `data.js` : 1~17회차 개념·공식·문항 데이터
+- `app.js` : 화면 렌더링, 채점, 제출 기능
+- `styles.css` : 디자인
+- `config.js` : Google Apps Script Web App URL 설정
+- `google-apps-script/Code.gs` : Google Sheet/Drive 저장용 Apps Script 코드
+- `google-apps-script.gs` : 같은 코드의 루트 복사본
+- `404.html` : 오류 페이지
 
-## 무료 배포 방법
+## GitHub Pages 배포
 
-1. GitHub에서 새 저장소를 만듭니다. 예: `physics-check`
-2. 이 폴더의 파일을 저장소 최상위(root)에 업로드합니다.
-3. 저장소의 `Settings → Pages`로 이동합니다.
-4. `Deploy from a branch`, branch는 `main`, folder는 `/(root)`를 선택하고 저장합니다.
-5. 몇 분 후 아래 주소가 열립니다.
+1. GitHub에서 새 repository를 만듭니다. 예: `physics-check`
+2. 이 ZIP의 모든 파일을 repository 최상위에 업로드합니다.
+3. `Settings → Pages → Deploy from a branch → main → /(root)`로 설정합니다.
+4. 배포 주소 예시: `https://깃허브아이디.github.io/physics-check/`
 
-```text
-https://깃허브아이디.github.io/physics-check/
-```
-
-회차별 링크는 다음과 같습니다.
+회차별 링크 예시:
 
 ```text
 https://깃허브아이디.github.io/physics-check/lesson.html?session=1
@@ -32,21 +31,29 @@ https://깃허브아이디.github.io/physics-check/lesson.html?session=2
 https://깃허브아이디.github.io/physics-check/lesson.html?session=17
 ```
 
-## 학생 답안 수집
+## Google Sheet 자동 저장 설정
 
-이 사이트는 GitHub Pages에서 무료로 작동하도록 서버가 없습니다. 따라서 자동 채점과 피드백은 가능하지만 학생 답안을 중앙에 자동 저장하지 않습니다.
-학생은 결과 화면에서 `리포트 복사` 또는 `txt로 저장`을 눌러 선생님께 제출할 수 있습니다.
+1. Google Sheet를 하나 만듭니다.
+2. 상단 메뉴에서 `확장 프로그램 → Apps Script`를 엽니다.
+3. `google-apps-script/Code.gs` 전체 코드를 Apps Script의 `Code.gs`에 붙여넣고 저장합니다.
+4. `배포 → 새 배포 → 유형: 웹 앱`으로 배포합니다.
+5. 실행 권한은 `나`, 액세스 권한은 `Anyone`으로 설정합니다.
+6. Web App URL을 복사해 `config.js`의 `SUBMIT_URL`에 붙여넣습니다.
+7. 수정된 `config.js`를 GitHub에 다시 업로드합니다.
 
-## 문항 수정 방법
+설정 예시:
 
-`data.js`에서 원하는 회차의 `questions`, `misconceptions`, `formulas` 항목을 수정하면 됩니다.
+```js
+window.PHYSICS_CHECK_CONFIG = {
+  SUBMIT_URL: "https://script.google.com/macros/s/배포ID/exec",
+  CLASS_NAME: "물리Ⅰ",
+  AUTO_SUBMIT: true,
+  REQUIRE_STUDENT_NAME: true
+};
+```
 
-- `answer`는 정답 번호입니다. 객관식 선택지는 0번부터 시작합니다.
-- O/X 문항의 `answer`는 `true`가 O, `false`가 X입니다.
-- `tag`는 오답 리포트에서 복습 우선순위로 표시됩니다.
+학생 제출 후 Sheet에는 `제출결과`, `문항별응답`, `태그집계` 시트가 자동 생성됩니다. `제출결과`에는 점수와 복습 태그뿐 아니라 학생별 약점 코멘트도 함께 저장됩니다. Drive 폴더에도 리포트 txt 파일을 저장하려면 Apps Script 코드 상단의 `DRIVE_FOLDER_ID`에 폴더 ID를 입력하세요.
 
-## 운영 팁
+## 문항 수정
 
-- 수업 종료 5분 전: 공식 카드 1분 → O/X 2분 → 진단 문항 2분
-- 결과 리포트의 복습 태그를 다음 수업 도입 질문으로 사용
-- 단원평가 전에는 1회차부터 누적 복습 링크를 순서대로 제공
+`data.js`에서 각 회차의 `goals`, `formulas`, `misconceptions`, `questions`를 수정하면 됩니다. GitHub에 다시 업로드하면 Pages가 자동 갱신됩니다.

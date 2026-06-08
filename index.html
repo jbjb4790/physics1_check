@@ -3,57 +3,105 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>물리Ⅰ 회차별 개념·공식·오개념 체크</title>
+  <meta name="theme-color" content="#063a78" />
+  <title>Young's Physics · 물리Ⅰ 5분 체크</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <header class="hero">
+<body class="home-page elegant-page">
+  <header class="top-shell">
     <nav class="topbar">
-      <a class="brand" href="index.html">물리Ⅰ Check</a>
+      <a class="brand brand-logo" href="index.html" aria-label="Young's Physics 홈">
+        <img class="brand-logo-image" src="youngs-physics-logo.png" alt="Young's Physics 로고" />
+      </a>
       <div class="navlinks">
-        <a href="teacher.html">GitHub 업로드 안내</a>
-        <a href="lesson.html?session=1">1회차 바로가기</a>
+        <a href="#lessonGrid">회차 대시보드</a>
+        <a href="teacher.html">결과 연동</a>
+        <a class="nav-cta" href="lesson.html?session=1">바로 시작</a>
       </div>
     </nav>
-    <section class="hero-content">
-      <p class="eyebrow">Young’s Physics · GitHub Pages용 무료 정적 사이트</p>
-      <h1>매 수업 후 5분, 공식·개념·오개념을 바로 확인합니다.</h1>
-      <p class="lead">학생은 회차 링크에 접속해 핵심 공식 카드를 보고, O/X 오개념 체크와 객관식 진단을 풉니다. 결과는 즉시 피드백되며 학생 기기에서 리포트로 저장·복사할 수 있습니다.</p>
-      <div class="hero-actions">
-        <a class="button primary" href="lesson.html?session=1">학생 화면 보기</a>
-        <a class="button" href="teacher.html">선생님 업로드 방법</a>
+
+    <section class="hero-wrap container">
+      <div class="hero-card hero-card-visual glass-card">
+        <div class="hero-copy hero-copy-left">
+          <p class="eyebrow">Young’s Physics · Smart Check</p>
+          <h1>오늘 수업 이해도,<br><span>5분이면 충분합니다</span></h1>
+          <p class="hero-lead">수업 직후 학생은 링크 하나로 핵심 공식·개념·오개념을 점검하고, 선생님은 결과를 Google Sheets에서 한눈에 확인합니다.</p>
+
+          <div class="hero-feature-list" aria-label="핵심 기능">
+            <span>핵심 공식 압축</span>
+            <span>오개념 빠른 감지</span>
+            <span>즉시 해설 피드백</span>
+            <span>Sheet 자동 정리</span>
+          </div>
+
+          <div class="hero-actions">
+            <a class="button primary large" href="lesson.html?session=1">지금 1회차 시작</a>
+            <a class="button soft large" href="teacher.html">결과 연동 설정</a>
+          </div>
+          <div id="connectionStatus" class="connection-pill" aria-live="polite"></div>
+
+          <div class="logo-badge" aria-label="Young's Physics 브랜드 로고">
+            <img src="youngs-physics-logo.png" alt="Young's Physics 로고" />
+          </div>
+        </div>
+
+        <div class="hero-media" aria-hidden="true">
+          <div class="hero-image-shell">
+            <img class="hero-image" src="hero-stem.png" alt="학생들이 함께 물리 개념을 학습하는 모습" />
+            <div class="float-card float-card-top">
+              <strong>5분 체크</strong>
+              <small>공식 · 개념 · 오개념</small>
+            </div>
+            <div class="float-card float-card-bottom">
+              <strong>결과 누적</strong>
+              <small>Google Sheets / Drive</small>
+            </div>
+            <div class="hero-mini-pill hero-mini-pill-1">물리Ⅰ 17회차 지원</div>
+            <div class="hero-mini-pill hero-mini-pill-2">링크 공유 즉시 사용</div>
+          </div>
+        </div>
       </div>
     </section>
   </header>
 
-  <main class="container">
-    <section class="panel intro-grid">
-      <div>
-        <h2>운영 방식</h2>
-        <p>각 회차 수업 종료 후 아래 링크 중 해당 회차를 학생에게 보내면 됩니다. GitHub Pages에 올린 뒤에는 <strong>lesson.html?session=회차번호</strong> 형태로 링크가 고정됩니다.</p>
-      </div>
-      <div class="notice">
-        <strong>응답 수집 안내</strong>
-        <p>이 버전은 무료 GitHub Pages에서 바로 작동하도록 서버 없이 만들었습니다. 자동 채점과 피드백은 가능하지만, 학생 답안을 중앙 서버에 저장하지 않습니다. 학생은 결과 리포트를 복사하거나 txt 파일로 내려받아 제출할 수 있습니다.</p>
-      </div>
+  <main class="container main-stack">
+    <section class="quick-panel" aria-label="운영 흐름">
+      <article><span>01</span><strong>수업 직후 공유</strong><p>회차 링크만 보내면 바로 시작</p></article>
+      <article><span>02</span><strong>5분 자기점검</strong><p>공식·개념·오개념을 한 번에 확인</p></article>
+      <article><span>03</span><strong>결과 자동 정리</strong><p>학생별 약점이 Sheet에 누적</p></article>
     </section>
 
-    <section class="toolbar" aria-label="회차 검색과 필터">
-      <input id="searchInput" type="search" placeholder="회차, 단원, 공식 검색 예: 전류, 에너지, 상대속도" />
-      <select id="unitFilter" aria-label="단원 필터">
-        <option value="all">전체 단원</option>
-        <option value="역학">역학</option>
-        <option value="전자기/파동">전자기/파동</option>
-      </select>
+    <section id="progressSummary" class="stats-grid" aria-label="학습 현황 요약"></section>
+
+    <section class="section-title center-title">
+      <p class="eyebrow blue">Lesson dashboard</p>
+      <h2>회차별 Young’s Physics Check</h2>
+      <p>오늘 배운 단원을 선택하면 공식 카드, 오개념 O/X, 5분 진단으로 이어집니다.</p>
+    </section>
+
+    <section class="toolbar clean-toolbar" aria-label="회차 검색과 필터">
+      <label class="search-wrap" for="searchInput">
+        <span>검색</span>
+        <input id="searchInput" type="search" placeholder="개념 검색: 전류, 에너지, 상대속도, 파동" />
+      </label>
+      <label class="select-wrap" for="unitFilter">
+        <span>단원</span>
+        <select id="unitFilter" aria-label="단원 필터">
+          <option value="all">전체 단원</option>
+          <option value="역학">역학</option>
+          <option value="전자기/파동">전자기/파동</option>
+        </select>
+      </label>
     </section>
 
     <section id="lessonGrid" class="lesson-grid" aria-live="polite"></section>
   </main>
 
   <footer class="footer">
-    <p>© 물리Ⅰ 회차별 자기점검 사이트 · 정적 HTML/CSS/JS · GitHub Pages 배포 가능</p>
+    <p>© Young’s Physics · 물리Ⅰ 회차별 스마트 체크</p>
   </footer>
 
+  <script src="config.js"></script>
   <script src="data.js"></script>
   <script src="app.js"></script>
   <script>renderIndex();</script>

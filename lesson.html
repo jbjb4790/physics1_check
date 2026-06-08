@@ -3,44 +3,76 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>회차별 진단 · 물리Ⅰ Check</title>
+  <meta name="theme-color" content="#063a78" />
+  <title>회차별 진단 · Young's Physics</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <nav class="topbar standalone">
-    <a class="brand" href="index.html">물리Ⅰ Check</a>
-    <div class="navlinks">
-      <a href="index.html">전체 회차</a>
-      <a href="teacher.html">업로드 안내</a>
+<body class="lesson-page elegant-page">
+  <nav class="topbar sticky">
+    <a class="brand brand-logo" href="index.html" aria-label="Young's Physics 홈">
+      <img class="brand-logo-image" src="youngs-physics-logo.png" alt="Young's Physics 로고" />
+    </a>
+    <div class="navlinks dark-links">
+      <a href="index.html">회차 대시보드</a>
+      <a href="teacher.html">결과 연동</a>
     </div>
   </nav>
 
   <main class="container lesson-container">
-    <section id="lessonHeader" class="lesson-header panel"></section>
+    <section id="lessonHeader" class="lesson-hero panel center-panel"></section>
 
-    <section class="student-box panel">
-      <label for="studentName">이름 또는 닉네임</label>
-      <input id="studentName" type="text" placeholder="예: 1반 홍길동" autocomplete="name" />
-      <p class="small">이 정보는 선생님 서버로 자동 전송되지 않고, 리포트 생성용으로만 사용됩니다.</p>
+    <section class="student-box panel form-panel">
+      <div class="section-title small-title center-title">
+        <p class="eyebrow blue">Student info</p>
+        <h2>학생 정보를 입력하세요</h2>
+        <p>채점 결과와 메모가 함께 저장되어 선생님이 약점을 빠르게 확인할 수 있습니다.</p>
+      </div>
+      <div class="student-form-card">
+        <label>반 / 수업명
+          <input id="studentGroup" type="text" placeholder="예: 1반, 월수반, 물리Ⅰ A" autocomplete="organization" />
+        </label>
+        <label>이름 또는 닉네임 <em>*</em>
+          <input id="studentName" type="text" placeholder="예: 홍길동" autocomplete="name" />
+        </label>
+        <label class="wide">오늘 헷갈린 내용 메모
+          <textarea id="studentMemo" rows="3" placeholder="예: v-t 그래프 넓이와 이동거리 구분"></textarea>
+        </label>
+      </div>
+      <div id="lessonConnectionStatus" class="connection-pill compact" aria-live="polite"></div>
     </section>
 
-    <section id="goalsBox" class="panel"></section>
-    <section id="formulaBox" class="panel"></section>
-    <section id="misconceptionBox" class="panel"></section>
-    <section id="quizBox" class="panel"></section>
-    <section id="resultBox" class="panel result-panel hidden"></section>
+    <div class="lesson-layout">
+      <aside class="lesson-sidebar panel">
+        <p class="eyebrow blue">Check flow</p>
+        <h2>진단 순서</h2>
+        <a href="#goalsBox"><span>01</span> 핵심 개념</a>
+        <a href="#formulaBox"><span>02</span> 공식 카드</a>
+        <a href="#misconceptionBox"><span>03</span> 오개념 O/X</a>
+        <a href="#quizBox"><span>04</span> 5분 진단</a>
+        <a href="#resultBox"><span>05</span> 결과 제출</a>
+      </aside>
 
-    <section class="lesson-nav panel">
-      <a id="prevLesson" class="button" href="#">이전 회차</a>
-      <a class="button" href="index.html">전체 회차</a>
-      <a id="nextLesson" class="button" href="#">다음 회차</a>
-    </section>
+      <div class="lesson-main">
+        <section id="goalsBox" class="panel content-panel"></section>
+        <section id="formulaBox" class="panel content-panel"></section>
+        <section id="misconceptionBox" class="panel content-panel"></section>
+        <section id="quizBox" class="panel content-panel"></section>
+        <section id="resultBox" class="panel result-panel hidden"></section>
+
+        <section class="lesson-nav panel">
+          <a id="prevLesson" class="button" href="#">이전 회차</a>
+          <a class="button" href="index.html">전체 회차</a>
+          <a id="nextLesson" class="button" href="#">다음 회차</a>
+        </section>
+      </div>
+    </div>
   </main>
 
   <footer class="footer">
-    <p>정답 확인 후 틀린 태그를 다시 복습하세요. 점수보다 중요한 것은 “어떤 개념을 헷갈렸는가”입니다.</p>
+    <p>Young’s Physics Check · 정답보다 중요한 것은 “왜 그렇게 생각했는지” 확인하는 것입니다.</p>
   </footer>
 
+  <script src="config.js"></script>
   <script src="data.js"></script>
   <script src="app.js"></script>
   <script>renderLessonPage();</script>
