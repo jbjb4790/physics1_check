@@ -1664,3 +1664,63 @@ pre {
     grid-template-columns: 1fr;
   }
 }
+
+/* === Headline no-syllable-break + larger Young's Physics logo badge === */
+.home-page .hero-headline {
+  font-size: clamp(3rem, 4.8vw, 4.55rem);
+  line-height: 1.08;
+  letter-spacing: -.078em;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+.home-page .hero-headline .headline-line {
+  display: block;
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+.home-page .hero-headline .headline-main {
+  color: #07172e;
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: #07172e;
+}
+.home-page .hero-headline .headline-accent {
+  background: linear-gradient(90deg, var(--yp-navy), var(--yp-blue) 54%, var(--yp-sky));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.brand-logo-image {
+  height: 58px;
+}
+.logo-badge {
+  margin-top: 22px;
+  padding: 14px 20px;
+  border-radius: 26px;
+}
+.logo-badge img {
+  height: 84px;
+  max-width: min(280px, 72vw);
+}
+@media (max-width: 1040px) {
+  .home-page .hero-headline {
+    text-align: center;
+  }
+}
+@media (max-width: 720px) {
+  .home-page .hero-headline {
+    font-size: clamp(2.35rem, 11.2vw, 3rem);
+    letter-spacing: -.07em;
+  }
+  .home-page .hero-headline .headline-line {
+    white-space: normal;
+  }
+  .brand-logo-image {
+    height: 50px;
+  }
+  .logo-badge img {
+    height: 68px;
+  }
+}
