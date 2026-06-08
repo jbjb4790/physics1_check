@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>회차별 진단 · 물리Ⅰ Check</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="topbar standalone">
+    <a class="brand" href="index.html">물리Ⅰ Check</a>
+    <div class="navlinks">
+      <a href="index.html">전체 회차</a>
+      <a href="teacher.html">업로드 안내</a>
+    </div>
+  </nav>
+
+  <main class="container lesson-container">
+    <section id="lessonHeader" class="lesson-header panel"></section>
+
+    <section class="student-box panel">
+      <label for="studentName">이름 또는 닉네임</label>
+      <input id="studentName" type="text" placeholder="예: 1반 홍길동" autocomplete="name" />
+      <p class="small">이 정보는 선생님 서버로 자동 전송되지 않고, 리포트 생성용으로만 사용됩니다.</p>
+    </section>
+
+    <section id="goalsBox" class="panel"></section>
+    <section id="formulaBox" class="panel"></section>
+    <section id="misconceptionBox" class="panel"></section>
+    <section id="quizBox" class="panel"></section>
+    <section id="resultBox" class="panel result-panel hidden"></section>
+
+    <section class="lesson-nav panel">
+      <a id="prevLesson" class="button" href="#">이전 회차</a>
+      <a class="button" href="index.html">전체 회차</a>
+      <a id="nextLesson" class="button" href="#">다음 회차</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>정답 확인 후 틀린 태그를 다시 복습하세요. 점수보다 중요한 것은 “어떤 개념을 헷갈렸는가”입니다.</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>renderLessonPage();</script>
+</body>
+</html>

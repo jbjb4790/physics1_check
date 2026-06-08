@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>물리Ⅰ 회차별 개념·공식·오개념 체크</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="topbar">
+      <a class="brand" href="index.html">물리Ⅰ Check</a>
+      <div class="navlinks">
+        <a href="teacher.html">GitHub 업로드 안내</a>
+        <a href="lesson.html?session=1">1회차 바로가기</a>
+      </div>
+    </nav>
+    <section class="hero-content">
+      <p class="eyebrow">Young’s Physics · GitHub Pages용 무료 정적 사이트</p>
+      <h1>매 수업 후 5분, 공식·개념·오개념을 바로 확인합니다.</h1>
+      <p class="lead">학생은 회차 링크에 접속해 핵심 공식 카드를 보고, O/X 오개념 체크와 객관식 진단을 풉니다. 결과는 즉시 피드백되며 학생 기기에서 리포트로 저장·복사할 수 있습니다.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="lesson.html?session=1">학생 화면 보기</a>
+        <a class="button" href="teacher.html">선생님 업로드 방법</a>
+      </div>
+    </section>
+  </header>
+
+  <main class="container">
+    <section class="panel intro-grid">
+      <div>
+        <h2>운영 방식</h2>
+        <p>각 회차 수업 종료 후 아래 링크 중 해당 회차를 학생에게 보내면 됩니다. GitHub Pages에 올린 뒤에는 <strong>lesson.html?session=회차번호</strong> 형태로 링크가 고정됩니다.</p>
+      </div>
+      <div class="notice">
+        <strong>응답 수집 안내</strong>
+        <p>이 버전은 무료 GitHub Pages에서 바로 작동하도록 서버 없이 만들었습니다. 자동 채점과 피드백은 가능하지만, 학생 답안을 중앙 서버에 저장하지 않습니다. 학생은 결과 리포트를 복사하거나 txt 파일로 내려받아 제출할 수 있습니다.</p>
+      </div>
+    </section>
+
+    <section class="toolbar" aria-label="회차 검색과 필터">
+      <input id="searchInput" type="search" placeholder="회차, 단원, 공식 검색 예: 전류, 에너지, 상대속도" />
+      <select id="unitFilter" aria-label="단원 필터">
+        <option value="all">전체 단원</option>
+        <option value="역학">역학</option>
+        <option value="전자기/파동">전자기/파동</option>
+      </select>
+    </section>
+
+    <section id="lessonGrid" class="lesson-grid" aria-live="polite"></section>
+  </main>
+
+  <footer class="footer">
+    <p>© 물리Ⅰ 회차별 자기점검 사이트 · 정적 HTML/CSS/JS · GitHub Pages 배포 가능</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>renderIndex();</script>
+</body>
+</html>

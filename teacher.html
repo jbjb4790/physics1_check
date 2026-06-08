@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GitHub Pages 업로드 안내 · 물리Ⅰ Check</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="topbar standalone">
+    <a class="brand" href="index.html">물리Ⅰ Check</a>
+    <div class="navlinks">
+      <a href="index.html">전체 회차</a>
+      <a href="lesson.html?session=1">학생 화면</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="panel">
+      <p class="eyebrow">선생님용</p>
+      <h1>GitHub로 무료 HTML 링크 배포하기</h1>
+      <p>이 폴더의 파일을 GitHub 저장소에 올리고 GitHub Pages를 켜면, 학생에게 보낼 수 있는 무료 웹사이트 주소가 생깁니다.</p>
+    </section>
+
+    <section class="panel steps">
+      <h2>가장 쉬운 업로드 순서</h2>
+      <ol>
+        <li><strong>GitHub 계정 만들기</strong>: github.com에서 무료 계정을 만듭니다.</li>
+        <li><strong>새 저장소 만들기</strong>: 예를 들어 <code>physics-check</code>라는 public repository를 만듭니다.</li>
+        <li><strong>파일 업로드</strong>: 압축을 푼 뒤 <code>index.html</code>, <code>lesson.html</code>, <code>teacher.html</code>, <code>data.js</code>, <code>app.js</code>, <code>styles.css</code>를 저장소의 최상위(root)에 업로드합니다.</li>
+        <li><strong>Pages 켜기</strong>: 저장소 <em>Settings → Pages</em>에서 Source를 <em>Deploy from a branch</em>, Branch를 <em>main</em>, Folder를 <em>/(root)</em>로 설정하고 Save합니다.</li>
+        <li><strong>링크 공유</strong>: 몇 분 후 <code>https://깃허브아이디.github.io/physics-check/</code> 주소가 열립니다. 회차별 링크는 아래 형식을 사용합니다.</li>
+      </ol>
+      <pre><code>1회차: https://깃허브아이디.github.io/physics-check/lesson.html?session=1
+2회차: https://깃허브아이디.github.io/physics-check/lesson.html?session=2
+...
+17회차: https://깃허브아이디.github.io/physics-check/lesson.html?session=17</code></pre>
+    </section>
+
+    <section class="panel">
+      <h2>수업 운영 팁</h2>
+      <div class="tip-grid">
+        <div class="tip-card"><strong>수업 직후 5분</strong><p>공식 카드 1분, O/X 오개념 2분, 객관식 2분으로 운영합니다.</p></div>
+        <div class="tip-card"><strong>오답 태그 확인</strong><p>결과 화면의 “복습 우선순위” 태그를 보고 다음 수업 도입 질문을 정합니다.</p></div>
+        <div class="tip-card"><strong>제출 방식</strong><p>학생이 결과 리포트를 복사하여 카카오톡, 구글 클래스룸, LMS에 제출하게 합니다.</p></div>
+        <div class="tip-card"><strong>문항 수정</strong><p><code>data.js</code> 파일에서 각 회차의 questions, misconceptions를 수정하면 즉시 반영됩니다.</p></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>현재 사이트의 회차별 링크</h2>
+      <p>GitHub Pages에 올린 뒤 이 페이지에서 열면, 아래 버튼의 링크도 자동으로 GitHub 주소 기준으로 복사됩니다.</p>
+      <div id="teacherLinks" class="teacher-links"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>무료 정적 사이트라 중앙 저장 기능은 없습니다. 자동 수집이 필요하면 Google Form/Sheet, Apps Script, Formspree 같은 별도 수집 도구를 붙이면 됩니다.</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script>renderTeacherLinks();</script>
+</body>
+</html>
