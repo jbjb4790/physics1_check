@@ -1787,3 +1787,140 @@ pre {
     font-size: clamp(2.35rem, 4.55vw, 3.25rem);
   }
 }
+
+/* === Formula selection question section === */
+.card-counts {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.lesson-meta-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.formula-check-list {
+  display: grid;
+  gap: 16px;
+}
+.formula-check {
+  text-align: center;
+  padding: 24px;
+  border: 1px solid rgba(12, 92, 170, .16);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(13, 110, 220, .08), transparent 26rem),
+    rgba(255,255,255,.92);
+  box-shadow: 0 14px 34px rgba(7, 42, 92, .07);
+}
+.formula-check legend {
+  max-width: 880px;
+  margin: 0 auto 8px;
+  color: #0b1b33;
+  font-size: 1.08rem;
+  font-weight: 950;
+  letter-spacing: -.025em;
+  line-height: 1.55;
+}
+.multi-hint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #0c4a8a;
+  font-size: .88rem;
+  font-weight: 850;
+}
+.formula-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+.formula-choice {
+  position: relative;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1px solid #dbeafe;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+  color: #102a43;
+  font-weight: 900;
+  text-align: left;
+  cursor: pointer;
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease, background .16s ease;
+}
+.formula-choice span {
+  line-height: 1.45;
+}
+.formula-choice:hover {
+  transform: translateY(-2px);
+  border-color: rgba(13, 110, 220, .36);
+  box-shadow: 0 14px 28px rgba(12, 92, 170, .10);
+}
+.formula-choice input {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  accent-color: #0c5caa;
+}
+.formula-choice:has(input:checked) {
+  border-color: rgba(12, 92, 170, .55);
+  background: #eff6ff;
+  box-shadow: 0 12px 24px rgba(12, 92, 170, .10);
+}
+.formula-choice.formula-correct {
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+.formula-choice.formula-wrong {
+  border-color: #fecaca;
+  background: #fef2f2;
+}
+.formula-choice.formula-missed {
+  border-color: #fde68a;
+  background: #fffbeb;
+}
+.formula-choice.formula-correct::after,
+.formula-choice.formula-wrong::after,
+.formula-choice.formula-missed::after {
+  margin-left: auto;
+  flex: 0 0 auto;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: .76rem;
+  font-weight: 950;
+}
+.formula-choice.formula-correct::after {
+  content: "정답";
+  color: #047857;
+  background: #dcfce7;
+}
+.formula-choice.formula-wrong::after {
+  content: "틀린 식";
+  color: #b91c1c;
+  background: #fee2e2;
+}
+.formula-choice.formula-missed::after {
+  content: "놓친 식";
+  color: #92400e;
+  background: #fef3c7;
+}
+@media (max-width: 1040px) {
+  .lesson-meta-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 720px) {
+  .formula-choice-grid,
+  .card-counts,
+  .lesson-meta-grid {
+    grid-template-columns: 1fr;
+  }
+  .formula-choice {
+    align-items: flex-start;
+  }
+}

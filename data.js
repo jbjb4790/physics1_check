@@ -120,6 +120,44 @@ window.LESSONS = [
         "explain": "변위는 +30 m + (-10 m) = +20 m입니다.",
         "tag": "변위 계산"
       }
+    ],
+    "formulaChecks": [
+      {
+        "prompt": "1회차 핵심 공식·그래프 해석 중 올바른 것만 모두 고르세요.",
+        "tag": "공식 선택-운동의 기술",
+        "options": [
+          {
+            "text": "v = s / t",
+            "correct": true,
+            "feedback": "속력은 이동거리/시간입니다."
+          },
+          {
+            "text": "v⃗ = s⃗ / t",
+            "correct": true,
+            "feedback": "속도는 변위/시간이며 방향을 포함합니다."
+          },
+          {
+            "text": "t = s / v",
+            "correct": true,
+            "feedback": "v=s/t를 시간에 대해 정리하면 t=s/v입니다."
+          },
+          {
+            "text": "v-t 그래프의 넓이 = 변위",
+            "correct": true,
+            "feedback": "부호를 포함한 넓이는 변위입니다."
+          },
+          {
+            "text": "a-t 그래프의 넓이 = 이동거리",
+            "correct": false,
+            "feedback": "a-t 그래프의 넓이는 속도 변화량입니다."
+          },
+          {
+            "text": "1 N = 1 kg·m/s",
+            "correct": false,
+            "feedback": "힘의 단위는 1 kg·m/s²입니다."
+          }
+        ]
+      }
     ]
   },
   {
@@ -248,6 +286,49 @@ window.LESSONS = [
         "explain": "v-t 기울기는 가속도이고, 기울기가 일정하면 등가속도 운동입니다.",
         "tag": "그래프"
       }
+    ],
+    "formulaChecks": [
+      {
+        "prompt": "등가속도 운동과 상대속도 공식 중 올바른 것만 모두 고르세요.",
+        "tag": "공식 선택-등가속도",
+        "options": [
+          {
+            "text": "a⃗ = Δv⃗ / Δt",
+            "correct": true,
+            "feedback": "가속도는 속도 변화량을 시간 변화량으로 나눈 값입니다."
+          },
+          {
+            "text": "v⃗_AB = v⃗_B − v⃗_A",
+            "correct": true,
+            "feedback": "A가 본 B의 속도는 상대방 속도에서 관측자 속도를 뺀 값입니다."
+          },
+          {
+            "text": "v = v₀ + at",
+            "correct": true,
+            "feedback": "등가속도에서 나중 속도 공식입니다."
+          },
+          {
+            "text": "v = v₀t + at",
+            "correct": false,
+            "feedback": "오른쪽 항의 단위가 길이 또는 속도와 섞여 맞지 않습니다."
+          },
+          {
+            "text": "s = v₀t + 1/2 at²",
+            "correct": true,
+            "feedback": "나중 속도 v가 없을 때 자주 쓰는 이동거리 공식입니다."
+          },
+          {
+            "text": "v = v₀ + 1/2 at²",
+            "correct": false,
+            "feedback": "1/2 at²는 길이의 단위이므로 속도식에 더할 수 없습니다."
+          },
+          {
+            "text": "v² − v₀² = 2as",
+            "correct": true,
+            "feedback": "시간 t가 없을 때 유용한 등가속도 공식입니다."
+          }
+        ]
+      }
     ]
   },
   {
@@ -370,6 +451,44 @@ window.LESSONS = [
         "answer": 0,
         "explain": "작용·반작용은 주어와 목적어가 서로 바뀝니다.",
         "tag": "작용반작용"
+      }
+    ],
+    "formulaChecks": [
+      {
+        "prompt": "힘과 운동방정식 관련 식 중 올바른 것만 모두 고르세요.",
+        "tag": "공식 선택-힘과 운동",
+        "options": [
+          {
+            "text": "ΣF = ma",
+            "correct": true,
+            "feedback": "알짜힘이 질량×가속도입니다."
+          },
+          {
+            "text": "평형이면 ΣFₓ = 0, ΣFᵧ = 0",
+            "correct": true,
+            "feedback": "각 축 방향 힘의 합이 0이면 평형입니다."
+          },
+          {
+            "text": "각 θ가 수평축 기준이면 Fₓ = F cosθ, Fᵧ = F sinθ",
+            "correct": true,
+            "feedback": "각도를 수평축에서 잰 경우의 직각분해입니다."
+          },
+          {
+            "text": "빗면에서 중력의 평행 성분은 mg sinθ",
+            "correct": true,
+            "feedback": "빗면 아래 방향 성분은 mg sinθ입니다."
+          },
+          {
+            "text": "빗면에서 수직항력은 항상 mg",
+            "correct": false,
+            "feedback": "빗면에서는 보통 N = mg cosθ입니다."
+          },
+          {
+            "text": "작용·반작용 두 힘은 한 물체의 합력에서 서로 상쇄된다",
+            "correct": false,
+            "feedback": "작용·반작용은 서로 다른 물체에 작용하므로 한 물체의 합력에서 직접 상쇄되지 않습니다."
+          }
+        ]
       }
     ]
   },
@@ -494,6 +613,49 @@ window.LESSONS = [
         "explain": "빗면에 수직한 중력 성분이 mg cosθ입니다.",
         "tag": "수직항력"
       }
+    ],
+    "formulaChecks": [
+      {
+        "prompt": "관성력·마찰력·탄성력·무게 공식 중 올바른 것만 모두 고르세요.",
+        "tag": "공식 선택-여러 가지 힘",
+        "options": [
+          {
+            "text": "가속하는 좌표계의 관성력은 F관성 = −ma",
+            "correct": true,
+            "feedback": "관성력은 계의 가속도 반대 방향으로 잡습니다."
+          },
+          {
+            "text": "운동마찰력은 fₖ = μₖN",
+            "correct": true,
+            "feedback": "물체가 미끄러지는 동안의 마찰력입니다."
+          },
+          {
+            "text": "최대 정지마찰력은 fₛ,max = μₛN",
+            "correct": true,
+            "feedback": "막 움직이려는 순간의 최대 정지마찰력입니다."
+          },
+          {
+            "text": "정지마찰력은 언제나 fₛ = μₛN",
+            "correct": false,
+            "feedback": "정지마찰력은 외력에 맞춰 변하고, 최대값만 μₛN입니다."
+          },
+          {
+            "text": "용수철 복원력은 F = −kx",
+            "correct": true,
+            "feedback": "변형 방향의 반대 방향으로 작용하는 복원력입니다."
+          },
+          {
+            "text": "무게는 W = mg",
+            "correct": true,
+            "feedback": "중력의 크기입니다."
+          },
+          {
+            "text": "엘리베이터가 위로 가속하면 겉보기 무게는 m(g−a)",
+            "correct": false,
+            "feedback": "위로 가속하면 겉보기 무게는 m(g+a)입니다."
+          }
+        ]
+      }
     ]
   },
   {
@@ -616,6 +778,44 @@ window.LESSONS = [
         "answer": 2,
         "explain": "완전탄성 충돌은 e=1입니다.",
         "tag": "반발계수"
+      }
+    ],
+    "formulaChecks": [
+      {
+        "prompt": "운동량·충격량·충돌 공식 중 올바른 것만 모두 고르세요.",
+        "tag": "공식 선택-운동량 충격량",
+        "options": [
+          {
+            "text": "p⃗ = mv⃗",
+            "correct": true,
+            "feedback": "운동량은 질량×속도입니다."
+          },
+          {
+            "text": "I⃗ = F⃗Δt = Δp⃗",
+            "correct": true,
+            "feedback": "충격량은 운동량의 변화량입니다."
+          },
+          {
+            "text": "p = mv²",
+            "correct": false,
+            "feedback": "mv² 형태는 운동량이 아니라 에너지식과 혼동한 것입니다."
+          },
+          {
+            "text": "외력이 없으면 m₁v₁ + m₂v₂ = m₁v₁′ + m₂v₂′",
+            "correct": true,
+            "feedback": "충돌 전후 총운동량 보존식입니다."
+          },
+          {
+            "text": "e = 멀어지는 상대속도 / 가까워지는 상대속도",
+            "correct": true,
+            "feedback": "반발계수의 기본 의미입니다."
+          },
+          {
+            "text": "I = F/Δt",
+            "correct": false,
+            "feedback": "충격량은 힘×시간입니다."
+          }
+        ]
       }
     ]
   },
@@ -745,6 +945,49 @@ window.LESSONS = [
         "explain": "ΔEₚ=mgh=1×10×5=50 J입니다.",
         "tag": "위치에너지"
       }
+    ],
+    "formulaChecks": [
+      {
+        "prompt": "일·일률·에너지 공식 중 올바른 것만 모두 고르세요.",
+        "tag": "공식 선택-일 에너지",
+        "options": [
+          {
+            "text": "W = Fs cosθ",
+            "correct": true,
+            "feedback": "힘과 이동 방향 사이 각이 θ일 때 일입니다."
+          },
+          {
+            "text": "P = W/t",
+            "correct": true,
+            "feedback": "일률은 단위시간당 한 일입니다."
+          },
+          {
+            "text": "힘과 속도 방향이 같을 때 P = Fv",
+            "correct": true,
+            "feedback": "등속 또는 순간적으로 같은 방향일 때 사용할 수 있습니다."
+          },
+          {
+            "text": "Eₖ = 1/2 mv²",
+            "correct": true,
+            "feedback": "운동에너지 공식입니다."
+          },
+          {
+            "text": "W_net = ΔEₖ",
+            "correct": true,
+            "feedback": "알짜힘이 한 일은 운동에너지 변화량입니다."
+          },
+          {
+            "text": "Eₚ = mg/h",
+            "correct": false,
+            "feedback": "중력 위치에너지는 mgh입니다."
+          },
+          {
+            "text": "운동에너지는 Eₖ = p²/(2m)로도 쓸 수 있다",
+            "correct": true,
+            "feedback": "p=mv를 이용해 바꾼 형태입니다."
+          }
+        ]
+      }
     ]
   },
   {
@@ -867,6 +1110,44 @@ window.LESSONS = [
         "answer": 2,
         "explain": "1/2kA²=1/2mvmax²이므로 vmax는 A에 비례합니다.",
         "tag": "용수철"
+      }
+    ],
+    "formulaChecks": [
+      {
+        "prompt": "탄성에너지와 역학적 에너지 보존식 중 올바른 것만 모두 고르세요.",
+        "tag": "공식 선택-역학적 에너지",
+        "options": [
+          {
+            "text": "Eₚ,spring = 1/2 kx²",
+            "correct": true,
+            "feedback": "용수철이 x만큼 변형되었을 때의 탄성 위치에너지입니다."
+          },
+          {
+            "text": "마찰이 없으면 E = 1/2 mv² + mgh = 일정",
+            "correct": true,
+            "feedback": "중력장 역학적 에너지 보존식입니다."
+          },
+          {
+            "text": "수평 용수철 운동에서는 E = 1/2 mv² + 1/2 kx² = 일정",
+            "correct": true,
+            "feedback": "마찰이 없을 때 성립합니다."
+          },
+          {
+            "text": "역학적 에너지는 E = mv² + mgh로 쓴다",
+            "correct": false,
+            "feedback": "운동에너지에는 1/2가 필요합니다."
+          },
+          {
+            "text": "비보존력에 의한 손실을 포함하면 Eₖ + Eₚ + W_loss = 일정으로 볼 수 있다",
+            "correct": true,
+            "feedback": "손실 에너지까지 포함하면 총에너지 보존으로 해석할 수 있습니다."
+          },
+          {
+            "text": "용수철 힘은 F = kx²",
+            "correct": false,
+            "feedback": "탄성력은 변형량 x에 비례합니다. F = −kx입니다."
+          }
+        ]
       }
     ]
   },
@@ -996,6 +1277,49 @@ window.LESSONS = [
         "explain": "순환 과정에서 한 일은 P-V 그래프가 둘러싼 면적입니다.",
         "tag": "순환기관"
       }
+    ],
+    "formulaChecks": [
+      {
+        "prompt": "열역학 공식과 과정 조건 중 올바른 것만 모두 고르세요.",
+        "tag": "공식 선택-열역학",
+        "options": [
+          {
+            "text": "P = F/A",
+            "correct": true,
+            "feedback": "압력은 단위 면적당 힘입니다."
+          },
+          {
+            "text": "PV = nRT",
+            "correct": true,
+            "feedback": "이상기체 상태방정식입니다."
+          },
+          {
+            "text": "등압 과정에서 W = PΔV",
+            "correct": true,
+            "feedback": "압력이 일정할 때 P-V 그래프 넓이입니다."
+          },
+          {
+            "text": "기체가 하는 일은 언제나 W = ΔP·V",
+            "correct": false,
+            "feedback": "일은 P-V 그래프의 넓이이며, 등압에서는 PΔV입니다."
+          },
+          {
+            "text": "열역학 제1법칙은 Q = ΔU + W",
+            "correct": true,
+            "feedback": "받은 열은 내부에너지 증가와 기체가 한 일로 나뉩니다."
+          },
+          {
+            "text": "단열 과정에서는 Q = 0",
+            "correct": true,
+            "feedback": "외부와 열 출입이 없는 과정입니다."
+          },
+          {
+            "text": "등온 과정의 이상기체는 ΔU = 0",
+            "correct": true,
+            "feedback": "이상기체의 내부에너지는 온도에 비례합니다."
+          }
+        ]
+      }
     ]
   },
   {
@@ -1113,6 +1437,44 @@ window.LESSONS = [
         "answer": 1,
         "explain": "금속박 벌어짐으로 대전 여부와 전하량의 많고 적음을 알 수 있습니다.",
         "tag": "검전기"
+      }
+    ],
+    "formulaChecks": [
+      {
+        "prompt": "정전기와 쿨롱 법칙 관련 식·문장 중 올바른 것만 모두 고르세요.",
+        "tag": "공식 선택-정전기",
+        "options": [
+          {
+            "text": "F = kq₁q₂/r²",
+            "correct": true,
+            "feedback": "전기력은 전하량의 곱에 비례, 거리 제곱에 반비례합니다."
+          },
+          {
+            "text": "F = kq₁q₂/r",
+            "correct": false,
+            "feedback": "거리 r이 아니라 r²에 반비례합니다."
+          },
+          {
+            "text": "접촉 전 총전하 = 접촉 후 총전하",
+            "correct": true,
+            "feedback": "전하 보존을 이용합니다."
+          },
+          {
+            "text": "전기력은 두 전하 사이 거리가 커질수록 r²에 비례해 커진다",
+            "correct": false,
+            "feedback": "거리가 커지면 전기력은 r²에 반비례해 작아집니다."
+          },
+          {
+            "text": "같은 종류의 전하는 서로 밀어낸다",
+            "correct": true,
+            "feedback": "같은 전하 사이에는 척력이 작용합니다."
+          },
+          {
+            "text": "다른 종류의 전하는 서로 끌어당긴다",
+            "correct": true,
+            "feedback": "다른 전하 사이에는 인력이 작용합니다."
+          }
+        ]
       }
     ]
   },
@@ -1241,6 +1603,49 @@ window.LESSONS = [
         "answer": 1,
         "explain": "1/e = 1/(1.6×10⁻¹⁹) ≈ 6.25×10¹⁸개입니다.",
         "tag": "전하량"
+      }
+    ],
+    "formulaChecks": [
+      {
+        "prompt": "전기장·전위·전류 공식 중 올바른 것만 모두 고르세요.",
+        "tag": "공식 선택-전기장 전류",
+        "options": [
+          {
+            "text": "E⃗ = F⃗/q",
+            "correct": true,
+            "feedback": "전기장은 단위 양전하가 받는 힘입니다."
+          },
+          {
+            "text": "F⃗ = qE⃗",
+            "correct": true,
+            "feedback": "전기장 속 전하가 받는 힘입니다."
+          },
+          {
+            "text": "V = W/q",
+            "correct": true,
+            "feedback": "전위는 단위 전하당 전기적 위치에너지입니다."
+          },
+          {
+            "text": "점전하 주변 전위는 V = kq/r",
+            "correct": true,
+            "feedback": "전위는 스칼라로 더합니다."
+          },
+          {
+            "text": "I = Q/t",
+            "correct": true,
+            "feedback": "전류는 단위시간당 지나간 전하량입니다."
+          },
+          {
+            "text": "I = S e v n",
+            "correct": true,
+            "feedback": "도선의 유동속도 공식입니다."
+          },
+          {
+            "text": "E = q/F",
+            "correct": false,
+            "feedback": "E는 F/q입니다."
+          }
+        ]
       }
     ]
   },
@@ -1375,6 +1780,49 @@ window.LESSONS = [
         "explain": "R=ρL/S이므로 길이에 비례합니다.",
         "tag": "도선저항"
       }
+    ],
+    "formulaChecks": [
+      {
+        "prompt": "전기회로 공식 중 올바른 것만 모두 고르세요.",
+        "tag": "공식 선택-전기회로",
+        "options": [
+          {
+            "text": "I = V/R",
+            "correct": true,
+            "feedback": "옴의 법칙입니다."
+          },
+          {
+            "text": "R = ρL/S",
+            "correct": true,
+            "feedback": "도선 저항은 길이에 비례, 단면적에 반비례합니다."
+          },
+          {
+            "text": "직렬연결: R = R₁ + R₂, 전류는 같다",
+            "correct": true,
+            "feedback": "직렬에서는 같은 전류가 흐릅니다."
+          },
+          {
+            "text": "병렬연결: 1/R = 1/R₁ + 1/R₂, 전압은 같다",
+            "correct": true,
+            "feedback": "병렬에서는 각 가지의 전압이 같습니다."
+          },
+          {
+            "text": "P = IV = I²R = V²/R",
+            "correct": true,
+            "feedback": "전력 공식은 상황에 따라 편한 형태를 고릅니다."
+          },
+          {
+            "text": "송전 손실전력은 ΔP = I²R",
+            "correct": true,
+            "feedback": "송전선 저항에서 열로 손실되는 전력입니다."
+          },
+          {
+            "text": "송전 손실전력은 항상 ΔP = V₀²/R",
+            "correct": false,
+            "feedback": "V₀는 송전 전압이지 송전선 자체에 걸리는 전압이 아니므로 주의해야 합니다."
+          }
+        ]
+      }
     ]
   },
   {
@@ -1503,6 +1951,44 @@ window.LESSONS = [
         "explain": "유도기전력은 자속 변화율에 비례합니다.",
         "tag": "전자기유도"
       }
+    ],
+    "formulaChecks": [
+      {
+        "prompt": "자기장·전자기력·전자기유도 공식 중 올바른 것만 모두 고르세요.",
+        "tag": "공식 선택-자기장 유도",
+        "options": [
+          {
+            "text": "Φ = BS cosθ",
+            "correct": true,
+            "feedback": "자기장과 면의 수직 방향이 이루는 각이 θ일 때 자속입니다."
+          },
+          {
+            "text": "긴 직선 도선 주변 자기장 B = 2×10⁻⁷ I/r",
+            "correct": true,
+            "feedback": "전류에 비례하고 거리 r에 반비례합니다."
+          },
+          {
+            "text": "솔레노이드 내부 자기장 B = μ₀nI",
+            "correct": true,
+            "feedback": "단위 길이당 감은 수 n과 전류 I에 비례합니다."
+          },
+          {
+            "text": "전류가 흐르는 도선이 받는 힘 F = BIL sinθ",
+            "correct": true,
+            "feedback": "자기장과 전류 방향 사이 각이 θ입니다."
+          },
+          {
+            "text": "유도기전력 ε = −N ΔΦ/Δt",
+            "correct": true,
+            "feedback": "자속 변화가 클수록 유도기전력이 커집니다."
+          },
+          {
+            "text": "자속은 Φ = B/S",
+            "correct": false,
+            "feedback": "자속은 자기장×면적의 수직 성분입니다."
+          }
+        ]
+      }
     ]
   },
   {
@@ -1625,6 +2111,49 @@ window.LESSONS = [
         "answer": 1,
         "explain": "교재에서는 수심이 깊어지면 수면파 속력이 빨라진다고 다룹니다.",
         "tag": "수면파"
+      }
+    ],
+    "formulaChecks": [
+      {
+        "prompt": "파동의 기본 공식 중 올바른 것만 모두 고르세요.",
+        "tag": "공식 선택-파동",
+        "options": [
+          {
+            "text": "T = 1/f",
+            "correct": true,
+            "feedback": "주기와 진동수는 역수 관계입니다."
+          },
+          {
+            "text": "v = λ/T",
+            "correct": true,
+            "feedback": "한 주기 동안 한 파장을 진행합니다."
+          },
+          {
+            "text": "v = fλ",
+            "correct": true,
+            "feedback": "파동 속력의 기본식입니다."
+          },
+          {
+            "text": "팽팽한 줄의 파동 속력 v = √(Tension/ρ)",
+            "correct": true,
+            "feedback": "장력이 클수록, 선밀도가 작을수록 빨라집니다."
+          },
+          {
+            "text": "파동 에너지 세기 I ∝ A²f²",
+            "correct": true,
+            "feedback": "진폭과 진동수의 제곱에 비례합니다."
+          },
+          {
+            "text": "f = 1/T가 아니라 f = T",
+            "correct": false,
+            "feedback": "진동수는 주기의 역수입니다."
+          },
+          {
+            "text": "v = f/λ",
+            "correct": false,
+            "feedback": "v는 fλ입니다."
+          }
+        ]
       }
     ]
   },
@@ -1749,6 +2278,49 @@ window.LESSONS = [
         "explain": "굴절 때문에 물속 물체는 떠 보입니다.",
         "tag": "겉보기 깊이"
       }
+    ],
+    "formulaChecks": [
+      {
+        "prompt": "반사·굴절·겉보기 깊이 공식 중 올바른 것만 모두 고르세요.",
+        "tag": "공식 선택-반사 굴절",
+        "options": [
+          {
+            "text": "입사각 = 반사각",
+            "correct": true,
+            "feedback": "반사의 법칙입니다."
+          },
+          {
+            "text": "n₁ sinθ₁ = n₂ sinθ₂",
+            "correct": true,
+            "feedback": "스넬의 법칙입니다."
+          },
+          {
+            "text": "n₁₂ = n₂/n₁ = sinθ₁/sinθ₂",
+            "correct": true,
+            "feedback": "상대 굴절률 표현입니다."
+          },
+          {
+            "text": "굴절해도 진동수 f는 일정하다",
+            "correct": true,
+            "feedback": "매질이 바뀌어도 파원의 진동수는 변하지 않습니다."
+          },
+          {
+            "text": "공기 중에서 물속 물체를 볼 때 겉보기 깊이 h′ = h/n",
+            "correct": true,
+            "feedback": "물체가 실제보다 얕게 보입니다."
+          },
+          {
+            "text": "절대굴절률은 n = v/c",
+            "correct": false,
+            "feedback": "절대굴절률은 n = c/v입니다."
+          },
+          {
+            "text": "굴절하면 항상 진동수가 바뀐다",
+            "correct": false,
+            "feedback": "굴절 시 바뀌는 것은 속력과 파장이고, 진동수는 일정합니다."
+          }
+        ]
+      }
     ]
   },
   {
@@ -1871,6 +2443,49 @@ window.LESSONS = [
         "answer": 1,
         "explain": "얇은 렌즈 작도에서는 중심을 지나는 빛은 직진으로 그립니다.",
         "tag": "작도"
+      }
+    ],
+    "formulaChecks": [
+      {
+        "prompt": "거울·렌즈 결상 공식 중 올바른 것만 모두 고르세요.",
+        "tag": "공식 선택-거울 렌즈",
+        "options": [
+          {
+            "text": "1/a + 1/b = 1/f",
+            "correct": true,
+            "feedback": "거울·렌즈 결상방정식입니다."
+          },
+          {
+            "text": "m = −b/a",
+            "correct": true,
+            "feedback": "부호까지 포함한 배율 표현입니다."
+          },
+          {
+            "text": "구면거울에서 r = 2f",
+            "correct": true,
+            "feedback": "곡률반지름은 초점거리의 2배입니다."
+          },
+          {
+            "text": "평면거울에서 물체와 상은 거울면에 대해 대칭이다",
+            "correct": true,
+            "feedback": "물체거리와 상거리가 같습니다."
+          },
+          {
+            "text": "볼록렌즈와 오목거울은 빛을 모으는 광학기기이다",
+            "correct": true,
+            "feedback": "둘 다 수렴시키는 성질을 가집니다."
+          },
+          {
+            "text": "결상방정식은 1/a − 1/b = 1/f로만 쓴다",
+            "correct": false,
+            "feedback": "이 사이트의 부호규칙에서는 1/a + 1/b = 1/f를 사용합니다."
+          },
+          {
+            "text": "오목렌즈는 항상 빛을 모은다",
+            "correct": false,
+            "feedback": "오목렌즈는 빛을 퍼뜨립니다."
+          }
+        ]
       }
     ]
   },
@@ -2000,6 +2615,49 @@ window.LESSONS = [
         "explain": "회절 정도는 λ/d에 비례합니다.",
         "tag": "회절"
       }
+    ],
+    "formulaChecks": [
+      {
+        "prompt": "간섭·정상파·회절 공식 중 올바른 것만 모두 고르세요.",
+        "tag": "공식 선택-간섭 정상파",
+        "options": [
+          {
+            "text": "동일 위상 두 파원의 보강간섭 조건은 Δ = mλ",
+            "correct": true,
+            "feedback": "m은 0,1,2,...입니다."
+          },
+          {
+            "text": "동일 위상 두 파원의 상쇄간섭 조건은 Δ = (m+1/2)λ",
+            "correct": true,
+            "feedback": "반파장의 홀수배일 때 상쇄입니다."
+          },
+          {
+            "text": "양 끝이 고정된 현의 정상파는 L = nλ/2",
+            "correct": true,
+            "feedback": "줄 길이는 반파장의 정수배입니다."
+          },
+          {
+            "text": "현의 진동수 f = n/(2L)√(T/ρ)",
+            "correct": true,
+            "feedback": "장력, 선밀도, 줄 길이를 포함한 식입니다."
+          },
+          {
+            "text": "회절 정도는 대체로 λ/d가 클수록 커진다",
+            "correct": true,
+            "feedback": "파장이 길고 틈이 좁을수록 회절이 잘 일어납니다."
+          },
+          {
+            "text": "동일 위상 두 파원의 보강간섭 조건은 Δ = (m+1/2)λ",
+            "correct": false,
+            "feedback": "그 조건은 상쇄간섭 조건입니다."
+          },
+          {
+            "text": "정상파에서는 L = nλ로만 가능하다",
+            "correct": false,
+            "feedback": "양 끝 고정 현에서는 L = nλ/2입니다."
+          }
+        ]
+      }
     ]
   },
   {
@@ -2127,6 +2785,49 @@ window.LESSONS = [
         "answer": 1,
         "explain": "아인슈타인의 질량-에너지 동등성 식입니다.",
         "tag": "질량-에너지"
+      }
+    ],
+    "formulaChecks": [
+      {
+        "prompt": "특수상대론 공식 중 올바른 것만 모두 고르세요.",
+        "tag": "공식 선택-상대론",
+        "options": [
+          {
+            "text": "γ = 1 / √(1 − v²/c²)",
+            "correct": true,
+            "feedback": "로런츠 인자입니다."
+          },
+          {
+            "text": "시간 지연: t = γt₀",
+            "correct": true,
+            "feedback": "움직이는 물체의 시간은 더 길게 측정됩니다."
+          },
+          {
+            "text": "길이 수축: L = L₀/γ",
+            "correct": true,
+            "feedback": "운동 방향 길이만 수축됩니다."
+          },
+          {
+            "text": "상대론적 질량: m = γm₀",
+            "correct": true,
+            "feedback": "이 교재의 표현에 맞춘 식입니다."
+          },
+          {
+            "text": "질량-에너지 동등성: E = mc²",
+            "correct": true,
+            "feedback": "질량은 에너지로 바뀔 수 있습니다."
+          },
+          {
+            "text": "시간 지연: t = t₀/γ",
+            "correct": false,
+            "feedback": "외부 관측자가 측정한 운동하는 시계의 시간 간격은 γ배입니다."
+          },
+          {
+            "text": "길이 수축: L = γL₀",
+            "correct": false,
+            "feedback": "운동하는 물체의 길이는 L₀보다 짧게 측정됩니다."
+          }
+        ]
       }
     ]
   }

@@ -83,6 +83,7 @@ function renderIndex() {
         lesson.id, lesson.unit, lesson.title, lesson.subtitle, lesson.textbook,
         ...lesson.goals,
         ...lesson.formulas.map(f => `${f.name} ${f.body} ${f.tip}`),
+        ...(lesson.formulaChecks || []).flatMap(fc => [fc.prompt, fc.tag, ...(fc.options || []).map(o => `${o.text} ${o.feedback || ''}`)]),
         ...lesson.questions.map(q => `${q.prompt} ${q.choices.join(' ')} ${q.tag}`),
         ...lesson.misconceptions.map(m => `${m.claim} ${m.tag}`)
       ].join(' ').toLowerCase();
@@ -95,7 +96,8 @@ function renderIndex() {
       const savedBadge = saved
         ? `<span class="badge good">최근 ${saved.score}/${saved.total}</span>`
         : `<span class="badge warn">미진행</span>`;
-      const totalItems = lesson.questions.length + lesson.misconceptions.length;
+      const formulaCheckCount = (lesson.formulaChecks || []).length;
+      const totalItems = lesson.questions.length + lesson.misconceptions.length + formulaCheckCount;
       return `<article class="lesson-card" data-icon="${unitIcon(lesson.unit)}" style="--card-accent:${unitAccent(lesson.unit)}; --progress:${progress}%">
         <div class="card-top">
           <span class="session-num">${lesson.id}회차</span>
@@ -107,6 +109,7 @@ function renderIndex() {
         </div>
         <div class="card-counts" aria-label="회차 구성">
           <span><strong>${lesson.formulas.length}</strong>공식</span>
+          <span><strong>${formulaCheckCount}</strong>공식선택</span>
           <span><strong>${lesson.misconceptions.length}</strong>O/X</span>
           <span><strong>${lesson.questions.length}</strong>퀴즈</span>
         </div>
@@ -160,6 +163,7 @@ function renderLessonPage() {
   renderLessonHeader(lesson);
   renderGoals(lesson);
   renderFormulas(lesson);
+  renderFormulaChecks(lesson);
   renderMisconceptions(lesson);
   renderQuiz(lesson);
   renderLessonNav(lesson);
@@ -169,7 +173,8 @@ function sectionHead(kicker, title, desc = '') {
   return `<div class="section-head"><p class="eyebrow blue">${escapeHtml(kicker)}</p><h2>${escapeHtml(title)}</h2>${desc ? `<p>${escapeHtml(desc)}</p>` : ''}</div>`;
 }
 function renderLessonHeader(lesson) {
-  const totalItems = lesson.questions.length + lesson.misconceptions.length;
+  const formulaCheckCount = (lesson.formulaChecks || []).length;
+  const totalItems = lesson.questions.length + lesson.misconceptions.length + formulaCheckCount;
   qs('#lessonHeader').innerHTML = `<div class="lesson-hero-kicker">
       <span class="session-bubble">${lesson.id}</span>
       <span>${escapeHtml(lesson.unit)}</span>
@@ -179,11 +184,13 @@ function renderLessonHeader(lesson) {
     <div class="lesson-topic-chips">
       <span>${escapeHtml(lesson.textbook)}</span>
       <span>공식 ${lesson.formulas.length}개</span>
+      <span>공식 선택 ${formulaCheckCount}개</span>
       <span>진단 ${totalItems}개</span>
     </div>
     <div class="lesson-meta-grid" aria-label="회차 구성">
       <div class="lesson-meta"><strong>${lesson.goals.length}</strong><span>핵심 개념</span></div>
       <div class="lesson-meta"><strong>${lesson.formulas.length}</strong><span>공식 카드</span></div>
+      <div class="lesson-meta"><strong>${formulaCheckCount}</strong><span>공식 선택</span></div>
       <div class="lesson-meta"><strong>${lesson.misconceptions.length}</strong><span>O/X 체크</span></div>
       <div class="lesson-meta"><strong>${totalItems}</strong><span>총 진단</span></div>
     </div>
@@ -207,6 +214,29 @@ function renderFormulas(lesson) {
       <p>${escapeHtml(f.tip)}</p>
     </article>`).join('')}</div>`;
 }
+
+function renderFormulaChecks(lesson) {
+  const checks = lesson.formulaChecks || [];
+  const box = qs('#formulaCheckBox');
+  if (!box) return;
+  if (!checks.length) {
+    box.classList.add('hidden');
+    box.innerHTML = '';
+    return;
+  }
+  box.classList.remove('hidden');
+  box.innerHTML = `${sectionHead('Formula Check', '올바른 공식만 체크', '맞는 공식과 살짝 틀린 공식을 섞어 두었습니다. 올바른 공식만 모두 선택하세요.')}
+    <div class="formula-check-list">${checks.map((fc, idx) => `<fieldset class="formula-check" data-index="${idx}">
+      <div class="item-number">F ${String(idx + 1).padStart(2, '0')}</div>
+      <legend>${escapeHtml(fc.prompt)}</legend>
+      <p class="multi-hint">복수 선택 가능 · 틀린 공식까지 체크하면 오답 처리됩니다.</p>
+      <div class="formula-choice-grid">
+        ${(fc.options || []).map((opt, oidx) => `<label class="formula-choice"><input type="checkbox" name="formula-${idx}" value="${oidx}"> <span>${escapeHtml(opt.text)}</span></label>`).join('')}
+      </div>
+      <div class="feedback hidden"></div>
+    </fieldset>`).join('')}</div>`;
+}
+
 function renderMisconceptions(lesson) {
   qs('#misconceptionBox').innerHTML = `${sectionHead('Misconception', '오개념 O/X 체크', '맞으면 O, 틀리면 X. 채점 후 바로 해설이 표시됩니다.')}
     <div class="mis-list">${lesson.misconceptions.map((m, idx) => `<div class="mis-item" data-index="${idx}">
@@ -237,7 +267,8 @@ function renderQuiz(lesson) {
     </form>`;
   qs('#quizForm').addEventListener('submit', e => { e.preventDefault(); gradeLesson(lesson); });
   qs('#resetAnswers').addEventListener('click', () => {
-    qsa('input[type=radio]').forEach(input => { input.checked = false; });
+    qsa('input[type=radio], input[type=checkbox]').forEach(input => { input.checked = false; });
+    qsa('.formula-choice').forEach(label => label.classList.remove('formula-correct', 'formula-wrong', 'formula-missed'));
     qsa('.feedback').forEach(f => { f.className = 'feedback hidden'; f.textContent = ''; });
     qs('#resultBox').classList.add('hidden');
   });
@@ -257,6 +288,24 @@ function buildGooglePayload(lesson, result, report) {
     group: studentInfo.group,
     memo: studentInfo.memo
   };
+  const formulaChecks = (lesson.formulaChecks || []).map((fc, idx) => {
+    const checked = qsa(`input[name="formula-${idx}"]:checked`).map(input => Number(input.value));
+    const options = fc.options || [];
+    const correctValues = options.map((opt, oidx) => opt.correct ? oidx : null).filter(v => v !== null);
+    const isCorrect = checked.length === correctValues.length && correctValues.every(v => checked.includes(v));
+    return {
+      type: 'Formula',
+      number: idx + 1,
+      prompt: fc.prompt,
+      pickedValue: checked,
+      pickedLabel: checked.length ? checked.map(i => options[i]?.text || '').join(' / ') : '미응답',
+      correctValue: correctValues,
+      correctLabel: correctValues.map(i => options[i]?.text || '').join(' / '),
+      isCorrect,
+      tag: fc.tag || '공식 선택',
+      feedback: (fc.options || []).map(opt => `${opt.correct ? '정답' : '오답'}: ${opt.text} - ${opt.feedback || ''}`).join(' | ')
+    };
+  });
   const mis = lesson.misconceptions.map((m, idx) => {
     const picked = qs(`input[name="mis-${idx}"]:checked`);
     const pickedValue = picked ? picked.value === 'true' : null;
@@ -291,14 +340,14 @@ function buildGooglePayload(lesson, result, report) {
   });
   return {
     app: 'physics-check',
-    version: 'beautiful-form-1.0',
+    version: 'formula-check-1.1',
     pageUrl: window.location.href,
     submittedAt: new Date().toISOString(),
     classLabel: getClassLabel(),
     student,
     lesson: { id: lesson.id, unit: lesson.unit, title: lesson.title, subtitle: lesson.subtitle, textbook: lesson.textbook },
     result,
-    answers: { misconceptions: mis, quiz },
+    answers: { formulaChecks, misconceptions: mis, quiz },
     report,
     userAgent: navigator.userAgent
   };
@@ -354,6 +403,12 @@ function postToGoogleAppsScript(payload) {
 function getTagGuide(tag) {
   const name = String(tag || '').trim();
   const rules = [
+    {
+      keys: ['공식 선택', '공식'],
+      area: '공식 구분·단위 검산',
+      diagnosis: '공식의 모양은 비슷하게 기억하지만, 단위와 적용 조건을 확인하는 단계가 흔들릴 수 있습니다.',
+      action: '양변의 단위를 먼저 맞춰 보고, 어떤 물리량이 빠진 식인지 표시한 뒤 올바른 식만 다시 써 보세요.'
+    },
     {
       keys: ['그래프', '속력', '속도', '변위', '가속도', '등가속도', '시간기록계', '평균값'],
       area: '운동 그래프·물리량 해석',
@@ -551,10 +606,69 @@ function gradeLesson(lesson) {
   }
 
   let score = 0;
-  const total = lesson.questions.length + lesson.misconceptions.length;
+  const formulaChecks = lesson.formulaChecks || [];
+  const total = lesson.questions.length + lesson.misconceptions.length + formulaChecks.length;
   const weakTags = [];
   const weakItems = [];
   let unanswered = 0;
+
+  formulaChecks.forEach((fc, idx) => {
+    const box = qs(`.formula-check[data-index="${idx}"]`);
+    const feedback = box ? qs('.feedback', box) : null;
+    const options = fc.options || [];
+    const checked = qsa(`input[name="formula-${idx}"]:checked`).map(input => Number(input.value));
+    const correct = options.map((opt, oidx) => opt.correct ? oidx : null).filter(v => v !== null);
+    const isExact = checked.length === correct.length && correct.every(v => checked.includes(v));
+
+    qsa('.formula-choice', box).forEach(label => {
+      label.classList.remove('formula-correct', 'formula-wrong', 'formula-missed');
+      const input = qs('input', label);
+      const i = input ? Number(input.value) : -1;
+      if (checked.includes(i) && options[i]?.correct) label.classList.add('formula-correct');
+      else if (checked.includes(i) && !options[i]?.correct) label.classList.add('formula-wrong');
+      else if (!checked.includes(i) && options[i]?.correct) label.classList.add('formula-missed');
+    });
+
+    if (!checked.length) {
+      unanswered += 1;
+      if (feedback) {
+        feedback.className = 'feedback warn';
+        feedback.innerHTML = '아직 선택하지 않았습니다. 올바른 공식을 모두 체크해 보세요.';
+      }
+      weakTags.push(fc.tag || '공식 선택');
+      weakItems.push({
+        type: '공식', no: idx + 1, tag: fc.tag || '공식 선택', status: '미응답', prompt: fc.prompt,
+        studentAnswer: '미응답', correctAnswer: correct.map(i => options[i].text).join(' / '),
+        feedback: '공식의 형태와 단위를 함께 확인하세요.'
+      });
+      return;
+    }
+
+    const chosenWrong = checked.filter(i => options[i] && !options[i].correct);
+    const missed = correct.filter(i => !checked.includes(i));
+    const correctText = correct.map(i => options[i].text).join(' / ');
+    if (isExact) {
+      score += 1;
+      if (feedback) {
+        feedback.className = 'feedback correct';
+        feedback.innerHTML = `정답입니다. 올바른 공식: ${escapeHtml(correctText)}`;
+      }
+    } else {
+      if (feedback) {
+        const wrongText = chosenWrong.length ? `<br>잘못 체크한 식: ${escapeHtml(chosenWrong.map(i => options[i].text).join(' / '))}` : '';
+        const missedText = missed.length ? `<br>놓친 식: ${escapeHtml(missed.map(i => options[i].text).join(' / '))}` : '';
+        feedback.className = 'feedback incorrect';
+        feedback.innerHTML = `공식 구분을 다시 확인하세요.<br>올바른 공식: ${escapeHtml(correctText)}${wrongText}${missedText}`;
+      }
+      weakTags.push(fc.tag || '공식 선택');
+      weakItems.push({
+        type: '공식', no: idx + 1, tag: fc.tag || '공식 선택', status: chosenWrong.length ? '틀린 공식 선택' : '정답 일부 누락', prompt: fc.prompt,
+        studentAnswer: checked.map(i => options[i]?.text || '').join(' / ') || '미응답',
+        correctAnswer: correctText,
+        feedback: '비슷한 형태의 식은 단위 검산과 빠진 물리량 확인으로 걸러낼 수 있습니다.'
+      });
+    }
+  });
 
   lesson.misconceptions.forEach((m, idx) => {
     const box = qs(`.mis-item[data-index="${idx}"]`);
@@ -755,7 +869,7 @@ function setupTeacherButtons() {
       student: { name: '연동테스트', group: '교사용 설정', memo: 'teacher.html 테스트 제출' },
       lesson: { id: 0, unit: '테스트', title: 'Google Sheets 연동 테스트', subtitle: '', textbook: '' },
       result: { score: 1, total: 1, percent: 100, level: '테스트 성공', unanswered: 0, weakTags: [] },
-      answers: { misconceptions: [], quiz: [] },
+      answers: { formulaChecks: [], misconceptions: [], quiz: [] },
       report: '[물리Ⅰ Check] Google Sheets 연동 테스트 제출입니다.',
       userAgent: navigator.userAgent
     };

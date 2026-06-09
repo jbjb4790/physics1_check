@@ -110,6 +110,7 @@ function normalizePayload_(p) {
       recommendations: Array.isArray(result.recommendations) ? result.recommendations : []
     },
     answers: {
+      formulaChecks: Array.isArray(answers.formulaChecks) ? answers.formulaChecks : (Array.isArray(p.formulaAnswers) ? p.formulaAnswers : []),
       misconceptions: Array.isArray(answers.misconceptions) ? answers.misconceptions : (Array.isArray(p.misAnswers) ? p.misAnswers : []),
       quiz: Array.isArray(answers.quiz) ? answers.quiz : (Array.isArray(p.quizAnswers) ? p.quizAnswers : [])
     },
@@ -180,6 +181,13 @@ function appendDetails_(sheet, p) {
     p.lesson.unit || '',
     p.lesson.title || ''
   ];
+
+  (p.answers.formulaChecks || []).forEach(function(item, index) {
+    rows.push(common.concat([
+      'Formula', item.number || index + 1, item.tag || '', item.pickedLabel || item.selected || '',
+      item.correctLabel || item.correctAnswer || '', item.isCorrect === true, item.prompt || '', item.feedback || item.explanation || ''
+    ]).map(safeCell_));
+  });
 
   (p.answers.misconceptions || []).forEach(function(item, index) {
     rows.push(common.concat([

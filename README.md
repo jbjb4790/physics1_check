@@ -57,3 +57,24 @@ window.PHYSICS_CHECK_CONFIG = {
 ## 문항 수정
 
 `data.js`에서 각 회차의 `goals`, `formulas`, `misconceptions`, `questions`를 수정하면 됩니다. GitHub에 다시 업로드하면 Pages가 자동 갱신됩니다.
+
+## 2026 업데이트: 공식 선택 문항
+
+각 회차에 `formulaChecks` 데이터가 추가되었습니다. 학생은 맞는 공식과 살짝 틀린 공식이 섞인 보기에서 **올바른 공식만 모두 체크**합니다. 채점 결과에는 공식 구분 약점도 O/X, 객관식과 함께 반영됩니다.
+
+문항을 수정하려면 `data.js`에서 각 회차의 아래 구조를 편집하세요.
+
+```js
+formulaChecks: [
+  {
+    prompt: "등가속도 운동 공식 중 올바른 것만 모두 고르세요.",
+    tag: "공식 선택-등가속도",
+    options: [
+      { text: "v = v₀ + at", correct: true, feedback: "나중 속도 공식입니다." },
+      { text: "v = v₀ + 1/2 at²", correct: false, feedback: "단위가 맞지 않습니다." }
+    ]
+  }
+]
+```
+
+Google Sheets를 사용하는 경우 새 Apps Script 코드도 다시 붙여넣어야 `문항별응답` 시트에 `Formula` 문항이 함께 저장됩니다.
