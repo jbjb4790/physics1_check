@@ -3,6 +3,26 @@ function qsa(selector, root = document) { return Array.from(root.querySelectorAl
 function escapeHtml(str) {
   return String(str ?? '').replace(/[&<>"']/g, s => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s]));
 }
+
+function renderFormulaText(value) {
+  let html = escapeHtml(value);
+  // data.js uses safe plain notation such as vec(v)_AB, W_loss, and ^2.
+  // The second line is a fallback for older data.js files that used a combining vector arrow.
+  html = html.replace(/vec\(([^)]+)\)/g, '<span class="vec-symbol"><span>$1</span></span>');
+  html = html.replace(/([A-Za-z])\u20d7/g, '<span class="vec-symbol"><span>$1</span></span>');
+  html = html.replace(/_([A-Za-z0-9가-힣]+)/g, '<sub>$1</sub>');
+  html = html.replace(/\^([0-9A-Za-z가-힣]+)/g, '<sup>$1</sup>');
+  return html;
+}
+
+function plainFormulaText(value) {
+  return String(value ?? '')
+    .replace(/vec\(([^)]+)\)/g, '→$1')
+    .replace(/_([A-Za-z0-9가-힣]+)/g, '_$1')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function lessonUrl(id) { return `lesson.html?session=${id}`; }
 function currentBaseUrl() { return window.location.href.replace(/[^/]*$/, ''); }
 function safeJsonParse(value) { try { return JSON.parse(value); } catch (_) { return null; } }
@@ -210,7 +230,7 @@ function renderFormulas(lesson) {
     <div class="formula-grid">${lesson.formulas.map((f, idx) => `<article class="formula-card">
       <span class="card-number">${idx + 1}</span>
       <h3>${escapeHtml(f.name)}</h3>
-      <div class="formula">${escapeHtml(f.body)}</div>
+      <div class="formula">${renderFormulaText(f.body)}</div>
       <p>${escapeHtml(f.tip)}</p>
     </article>`).join('')}</div>`;
 }
@@ -231,7 +251,7 @@ function renderFormulaChecks(lesson) {
       <legend>${escapeHtml(fc.prompt)}</legend>
       <p class="multi-hint">복수 선택 가능 · 틀린 공식까지 체크하면 오답 처리됩니다.</p>
       <div class="formula-choice-grid">
-        ${(fc.options || []).map((opt, oidx) => `<label class="formula-choice"><input type="checkbox" name="formula-${idx}" value="${oidx}"> <span>${escapeHtml(opt.text)}</span></label>`).join('')}
+        ${(fc.options || []).map((opt, oidx) => `<label class="formula-choice"><input type="checkbox" name="formula-${idx}" value="${oidx}"> <span class="formula-text">${renderFormulaText(opt.text)}</span></label>`).join('')}
       </div>
       <div class="feedback hidden"></div>
     </fieldset>`).join('')}</div>`;
@@ -298,12 +318,12 @@ function buildGooglePayload(lesson, result, report) {
       number: idx + 1,
       prompt: fc.prompt,
       pickedValue: checked,
-      pickedLabel: checked.length ? checked.map(i => options[i]?.text || '').join(' / ') : '미응답',
+      pickedLabel: checked.length ? checked.map(i => plainFormulaText(options[i]?.text || '')).join(' / ') : '미응답',
       correctValue: correctValues,
-      correctLabel: correctValues.map(i => options[i]?.text || '').join(' / '),
+      correctLabel: correctValues.map(i => plainFormulaText(options[i]?.text || '')).join(' / '),
       isCorrect,
       tag: fc.tag || '공식 선택',
-      feedback: (fc.options || []).map(opt => `${opt.correct ? '정답' : '오답'}: ${opt.text} - ${opt.feedback || ''}`).join(' | ')
+      feedback: (fc.options || []).map(opt => `${opt.correct ? '정답' : '오답'}: ${plainFormulaText(opt.text)} - ${opt.feedback || ''}`).join(' | ')
     };
   });
   const mis = lesson.misconceptions.map((m, idx) => {
@@ -638,7 +658,7 @@ function gradeLesson(lesson) {
       weakTags.push(fc.tag || '공식 선택');
       weakItems.push({
         type: '공식', no: idx + 1, tag: fc.tag || '공식 선택', status: '미응답', prompt: fc.prompt,
-        studentAnswer: '미응답', correctAnswer: correct.map(i => options[i].text).join(' / '),
+        studentAnswer: '미응답', correctAnswer: correct.map(i => plainFormulaText(options[i].text)).join(' / '),
         feedback: '공식의 형태와 단위를 함께 확인하세요.'
       });
       return;
@@ -651,20 +671,20 @@ function gradeLesson(lesson) {
       score += 1;
       if (feedback) {
         feedback.className = 'feedback correct';
-        feedback.innerHTML = `정답입니다. 올바른 공식: ${escapeHtml(correctText)}`;
+        feedback.innerHTML = `정답입니다. 올바른 공식: ${renderFormulaText(correctText)}`;
       }
     } else {
       if (feedback) {
-        const wrongText = chosenWrong.length ? `<br>잘못 체크한 식: ${escapeHtml(chosenWrong.map(i => options[i].text).join(' / '))}` : '';
-        const missedText = missed.length ? `<br>놓친 식: ${escapeHtml(missed.map(i => options[i].text).join(' / '))}` : '';
+        const wrongText = chosenWrong.length ? `<br>잘못 체크한 식: ${renderFormulaText(chosenWrong.map(i => options[i].text).join(' / '))}` : '';
+        const missedText = missed.length ? `<br>놓친 식: ${renderFormulaText(missed.map(i => options[i].text).join(' / '))}` : '';
         feedback.className = 'feedback incorrect';
-        feedback.innerHTML = `공식 구분을 다시 확인하세요.<br>올바른 공식: ${escapeHtml(correctText)}${wrongText}${missedText}`;
+        feedback.innerHTML = `공식 구분을 다시 확인하세요.<br>올바른 공식: ${renderFormulaText(correctText)}${wrongText}${missedText}`;
       }
       weakTags.push(fc.tag || '공식 선택');
       weakItems.push({
         type: '공식', no: idx + 1, tag: fc.tag || '공식 선택', status: chosenWrong.length ? '틀린 공식 선택' : '정답 일부 누락', prompt: fc.prompt,
-        studentAnswer: checked.map(i => options[i]?.text || '').join(' / ') || '미응답',
-        correctAnswer: correctText,
+        studentAnswer: checked.map(i => plainFormulaText(options[i]?.text || '')).join(' / ') || '미응답',
+        correctAnswer: plainFormulaText(correctText),
         feedback: '비슷한 형태의 식은 단위 검산과 빠진 물리량 확인으로 걸러낼 수 있습니다.'
       });
     }

@@ -19,7 +19,7 @@ window.LESSONS = [
       },
       {
         "name": "속도",
-        "body": "v⃗ = s⃗ / t",
+        "body": "vec(v) = vec(s) / t",
         "tip": "1초 동안의 변위. 방향을 포함한다."
       },
       {
@@ -132,7 +132,7 @@ window.LESSONS = [
             "feedback": "속력은 이동거리/시간입니다."
           },
           {
-            "text": "v⃗ = s⃗ / t",
+            "text": "vec(v) = vec(s) / t",
             "correct": true,
             "feedback": "속도는 변위/시간이며 방향을 포함합니다."
           },
@@ -175,12 +175,12 @@ window.LESSONS = [
     "formulas": [
       {
         "name": "가속도",
-        "body": "a⃗ = Δv⃗ / Δt",
+        "body": "vec(a) = Δvec(v) / Δt",
         "tip": "속도의 크기 또는 방향이 변하면 가속도가 생긴다."
       },
       {
         "name": "상대속도",
-        "body": "v⃗_AB = v⃗_B − v⃗_A",
+        "body": "vec(v)_AB = vec(v)_B − vec(v)_A",
         "tip": "A가 본 B의 속도 = ‘상대방 − 관측자’."
       },
       {
@@ -293,12 +293,12 @@ window.LESSONS = [
         "tag": "공식 선택-등가속도",
         "options": [
           {
-            "text": "a⃗ = Δv⃗ / Δt",
+            "text": "vec(a) = Δvec(v) / Δt",
             "correct": true,
             "feedback": "가속도는 속도 변화량을 시간 변화량으로 나눈 값입니다."
           },
           {
-            "text": "v⃗_AB = v⃗_B − v⃗_A",
+            "text": "vec(v)_AB = vec(v)_B − vec(v)_A",
             "correct": true,
             "feedback": "A가 본 B의 속도는 상대방 속도에서 관측자 속도를 뺀 값입니다."
           },
@@ -673,12 +673,12 @@ window.LESSONS = [
     "formulas": [
       {
         "name": "운동량",
-        "body": "p⃗ = mv⃗",
+        "body": "vec(p) = m vec(v)",
         "tip": "방향은 속도 방향과 같다."
       },
       {
         "name": "충격량",
-        "body": "I⃗ = F⃗ Δt = Δp⃗",
+        "body": "vec(I) = vec(F) Δt = Δvec(p)",
         "tip": "힘-시간 그래프의 넓이."
       },
       {
@@ -786,12 +786,12 @@ window.LESSONS = [
         "tag": "공식 선택-운동량 충격량",
         "options": [
           {
-            "text": "p⃗ = mv⃗",
+            "text": "vec(p) = m vec(v)",
             "correct": true,
             "feedback": "운동량은 질량×속도입니다."
           },
           {
-            "text": "I⃗ = F⃗Δt = Δp⃗",
+            "text": "vec(I) = vec(F) Δt = Δvec(p)",
             "correct": true,
             "feedback": "충격량은 운동량의 변화량입니다."
           },
@@ -1493,12 +1493,12 @@ window.LESSONS = [
     "formulas": [
       {
         "name": "전기장",
-        "body": "E⃗ = F⃗ / q = kq/r²",
+        "body": "vec(E) = vec(F) / q = kq/r²",
         "tip": "단위 양전하가 받는 힘."
       },
       {
         "name": "전기력",
-        "body": "F⃗ = qE⃗",
+        "body": "vec(F) = q vec(E)",
         "tip": "음전하는 전기장 반대 방향으로 힘을 받는다."
       },
       {
@@ -1611,12 +1611,12 @@ window.LESSONS = [
         "tag": "공식 선택-전기장 전류",
         "options": [
           {
-            "text": "E⃗ = F⃗/q",
+            "text": "vec(E) = vec(F)/q",
             "correct": true,
             "feedback": "전기장은 단위 양전하가 받는 힘입니다."
           },
           {
-            "text": "F⃗ = qE⃗",
+            "text": "vec(F) = q vec(E)",
             "correct": true,
             "feedback": "전기장 속 전하가 받는 힘입니다."
           },

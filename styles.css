@@ -1924,3 +1924,72 @@ pre {
     align-items: flex-start;
   }
 }
+
+/* === Formula typography fix: avoid broken vector glyphs and make formula options clearer === */
+.formula,
+.formula-text,
+.feedback .vec-symbol,
+.weak-detail-card dd {
+  font-feature-settings: "tnum" 1;
+}
+.formula,
+.formula-text {
+  font-family: "Segoe UI", "Noto Sans KR", "Apple SD Gothic Neo", Arial, sans-serif;
+  letter-spacing: -0.01em;
+}
+.formula-text {
+  display: inline-block;
+  font-size: 1.02rem;
+  line-height: 1.55;
+  word-break: keep-all;
+}
+.vec-symbol {
+  position: relative;
+  display: inline-block;
+  min-width: .72em;
+  padding-top: .18em;
+  margin-inline: .02em;
+  font-style: italic;
+}
+.vec-symbol::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -.42em;
+  text-align: center;
+  font-size: .72em;
+  line-height: 1;
+  font-style: normal;
+  font-weight: 800;
+  color: currentColor;
+}
+.formula sub,
+.formula-text sub,
+.feedback sub {
+  font-size: .72em;
+  vertical-align: -0.28em;
+  margin-left: .02em;
+}
+.formula sup,
+.formula-text sup,
+.feedback sup {
+  font-size: .72em;
+  vertical-align: .45em;
+}
+.formula-choice {
+  align-items: center;
+}
+.formula-choice input {
+  margin-top: 0;
+}
+.formula-choice.formula-correct::after,
+.formula-choice.formula-wrong::after,
+.formula-choice.formula-missed::after {
+  white-space: nowrap;
+}
+@media (max-width: 720px) {
+  .formula-text {
+    font-size: 1rem;
+  }
+}
